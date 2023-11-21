@@ -1,5 +1,7 @@
 package com.mangosteen.app.controller;
 
+import com.mangosteen.app.model.dao.UserInfo;
+import lombok.val;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -25,6 +27,10 @@ public class HelloController {
     //http://localhost:8080/v1/greeting?name=john&id=11008866
     @GetMapping(path = "v1/greeting")
     public String sayGreeting(@RequestParam("name") String name, @RequestParam("id") Long id) {
+        val userInfo = UserInfo.builder()
+                               .username("xxxx")
+                               .build();
+        System.out.println(userInfo.getId());
         return String.format("Sqy greeting: %s with %d", name, id);
     }
 }
