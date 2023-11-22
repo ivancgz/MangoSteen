@@ -4,5 +4,12 @@ spring:
     username: root
     password: mangosteen
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+springdoc:
+#  api-docs:
+#    enabled: false
+#  swagger-ui:
+#    enabled: false
+
 server:
   port: 8888
