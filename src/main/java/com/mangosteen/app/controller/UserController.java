@@ -1,8 +1,10 @@
 package com.mangosteen.app.controller;
 
+import com.mangosteen.app.converter.btv.UserInfoBTVConverter;
 import com.mangosteen.app.exception.*;
-import com.mangosteen.app.model.UserInfo;
-import com.mangosteen.app.mapper.UserInfoMapper;
+import com.mangosteen.app.dao.mapper.UserInfoMapper;
+import com.mangosteen.app.manager.UserManager;
+import com.mangosteen.app.model.vo.UserInfo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -20,11 +22,13 @@ import java.util.Optional;
 @RestController
 @Tag(name = "User APIs", description = "Related APIs for user management")
 public class UserController {
-    private final UserInfoMapper userInfoMapper;
+    private final UserManager userManager;
+    private final UserInfoBTVConverter converter;
 
     @Autowired
-    public UserController(UserInfoMapper userInfoMapper) {
-        this.userInfoMapper = userInfoMapper;
+    public UserController(UserManager userManager, UserInfoBTVConverter converter) {
+        this.userManager = userManager;
+        this.converter = converter;
     }
 
     @GetMapping("v1/users/{id}")
@@ -33,16 +37,16 @@ public class UserController {
                     @ApiResponse(responseCode = "200", description = "User information found"),
                     @ApiResponse(responseCode = "404", description = "User information not found")
             })
-    ResponseEntity<?> getUserInfoById(@Parameter(description = "The user id to fetch")
+    ResponseEntity<UserInfo> getUserInfoById(@Parameter(description = "The user id to fetch")
                              @PathVariable("id") Long id) {
         if (id < 0L) {
             throw new InvalidParameterException("User Id must be greater than 0");
         }
-        val userInfo = Optional.ofNullable(userInfoMapper.getUserInfoByUserId(id))
+        val userInfoBO = Optional.ofNullable(userManager.getUserInfoByUserId(id))
                                .orElseThrow(() -> new ResourceNotFoundException(
                                        String.format("There is no user with id %s", id)));
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                              .header("mangosteen", "good")
-                             .body(userInfo);
+                             .body(converter.convert(userInfoBO));
     }
 }
