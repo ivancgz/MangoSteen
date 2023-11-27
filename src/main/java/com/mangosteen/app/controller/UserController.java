@@ -38,15 +38,17 @@ public class UserController {
                     @ApiResponse(responseCode = "404", description = "User information not found")
             })
     ResponseEntity<UserInfo> getUserInfoById(@Parameter(description = "The user id to fetch")
-                             @PathVariable("id") Long id) {
+                                             @PathVariable("id") Long id) {
         if (id < 0L) {
             throw new InvalidParameterException("User Id must be greater than 0");
         }
         val userInfoBO = Optional.ofNullable(userManager.getUserInfoByUserId(id))
                                .orElseThrow(() -> new ResourceNotFoundException(
                                        String.format("There is no user with id %s", id)));
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                             .header("mangosteen", "good")
-                             .body(converter.convert(userInfoBO));
+        return ResponseEntity.ok(converter.convert(userInfoBO));
+
+        //        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+//                             .header("mangosteen", "good")
+//                             .body(converter.convert(userInfoBO));
     }
 }
