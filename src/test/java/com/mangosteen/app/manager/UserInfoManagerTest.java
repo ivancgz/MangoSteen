@@ -1,5 +1,10 @@
 package com.mangosteen.app.manager;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.verify;
+
 import com.mangosteen.app.converter.dtb.UserInfoDTBConverter;
 import com.mangosteen.app.dao.UserDao;
 import com.mangosteen.app.model.dao.UserInfo;
@@ -9,9 +14,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
-
 class UserInfoManagerTest {
 
     @Mock
@@ -20,7 +22,7 @@ class UserInfoManagerTest {
 
     @BeforeEach
     void setUp() {
-//        MockitoAnnotations.initMocks(this);
+        //        MockitoAnnotations.initMocks(this);
         MockitoAnnotations.openMocks(this);
         val converter = new UserInfoDTBConverter();
         userManager = new UserManagerImpl(userDao, converter);

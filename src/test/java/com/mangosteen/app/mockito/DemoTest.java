@@ -1,10 +1,20 @@
 package com.mangosteen.app.mockito;
 
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.atMostOnce;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.mockito.Mockito.*;
+//import static org.mockito.Mockito.*;
 
 public class DemoTest {
     @Test
@@ -21,15 +31,15 @@ public class DemoTest {
         System.out.println(mockList.get(5));
         System.out.println(mockList.get(5));
         System.out.println(mockList.get(1));
-//        System.out.println(mockList.get(6));
-//        System.out.println(mockList.get(10));
+        //        System.out.println(mockList.get(6));
+        //        System.out.println(mockList.get(10));
 
         // verify() 验证模拟对象方法调用的情况
         verify(mockList, times(2)).get(eq(5));
         verify(mockList, atMostOnce()).get(eq(1));
-//        verify(mockList, times(3)).get(anyInt());
-//        verify(mockList, times(3)).get(5);
-//        verify(mockList).get(1); // times: 1
+        // verify(mockList, times(3)).get(anyInt());
+        // verify(mockList, times(3)).get(5);
+        // verify(mockList).get(1); // times: 1
         verify(mockList, never()).get(10);
     }
 }

@@ -1,5 +1,14 @@
 package com.mangosteen.app.controller;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+//import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mangosteen.app.converter.btv.UserInfoBTVConverter;
 import com.mangosteen.app.exception.GlobalExceptionHandler;
@@ -16,13 +25,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
 class UserControllerTest {
@@ -46,8 +49,8 @@ class UserControllerTest {
 
     @AfterEach
     void tearDown() {
-//        reset(userManager);
-//        reset(converter);
+    //        reset(userManager);
+    //        reset(converter);
     }
 
     @Test
@@ -66,7 +69,7 @@ class UserControllerTest {
         when(converter.convert(userInfoBO)).thenReturn(userInfoVO);
 
         // Act && Assert
-//        val result = userController.getUserInfoById(id);
+        //        val result = userController.getUserInfoById(id);
         // url act and assert
         mockMvc.perform(MockMvcRequestBuilders.get("/v1/users/" + id)
                                               .contentType("application/json")

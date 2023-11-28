@@ -1,13 +1,17 @@
 package com.mangosteen.app.exception;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class ServiceException extends RuntimeException{
+public class ServiceException extends RuntimeException {
     private int statusCode;
     private BizErrorCode errorCode;
 
@@ -19,7 +23,7 @@ public class ServiceException extends RuntimeException{
         Unknown
     }
 
-//    private String requestId;
+    //    private String requestId;
 
     public ServiceException(String message) {
         super(message);

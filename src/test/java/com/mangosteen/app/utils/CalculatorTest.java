@@ -1,17 +1,17 @@
 package com.mangosteen.app.utils;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import lombok.val;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CalculatorTest {
 
     @Test // Test case
     @DisplayName("First Test Case")
-//    @RepeatedTest(10)
-//    @Disabled
+    //    @RepeatedTest(10)
+    //    @Disabled
     void testAdd() {
         // Arrange
         int num1 = 100;

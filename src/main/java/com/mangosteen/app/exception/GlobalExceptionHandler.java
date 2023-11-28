@@ -1,6 +1,5 @@
 package com.mangosteen.app.exception;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -21,14 +20,14 @@ public class GlobalExceptionHandler {
                                                 .build());
     }
 
-//    @ExceptionHandler(ResourceNotFoundException.class)
-//    ResponseEntity<ErrorResponse> handleResourceNotFoundException(ResourceNotFoundException ex) {
-//        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-//                             .body(ErrorResponse.builder()
-//                                                .statusCode(HttpStatus.NOT_FOUND.value())
-//                                                .errorCode(BizErrorCode.NOT_FOUND)
-//                                                .message("There is no user")
-//                                                .errorType(ServiceException.ErrorType.Client)
-//                                                .build());
-//    }
+    //    @ExceptionHandler(ResourceNotFoundException.class)
+    //    ResponseEntity<ErrorResponse> handleResourceNotFoundException(ResourceNotFoundException ex) {
+    //        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+    //                             .body(ErrorResponse.builder()
+    //                                                .statusCode(HttpStatus.NOT_FOUND.value())
+    //                                                .errorCode(BizErrorCode.NOT_FOUND)
+    //                                                .message("There is no user")
+    //                                                .errorType(ServiceException.ErrorType.Client)
+    //                                                .build());
+    //    }
 }

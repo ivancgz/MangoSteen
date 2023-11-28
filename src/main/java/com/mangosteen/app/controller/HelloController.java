@@ -2,7 +2,10 @@ package com.mangosteen.app.controller;
 
 import com.mangosteen.app.model.dao.UserInfo;
 import lombok.val;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Hello Controller
@@ -25,6 +28,13 @@ public class HelloController {
     }
 
     //http://localhost:8080/v1/greeting?name=john&id=11008866
+
+    /**
+     * Say greeting API
+     * @param name name
+     * @param id specific id
+     * @return greeting string
+     */
     @GetMapping(path = "v1/greeting")
     public String sayGreeting(@RequestParam("name") String name, @RequestParam("id") Long id) {
         val userInfo = UserInfo.builder()
